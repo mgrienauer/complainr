@@ -1,12 +1,17 @@
 const express = require('express') // import express library
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 // import express routes
 const users = require('./routes/api/users')
 const profile = require('./routes/api/profile')
 const posts = require('./routes/api/posts')
 
-const app = express() // set app as new express server
+// set app as new express middleware server
+const app = express() 
+//import body parser middleware to let us access req.body.(whatever info)
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 //DB config
 const db = require('./config/keys').mongoURI
