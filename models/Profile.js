@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 //create profile schema for mongodb
 const ProfileSchema = new Schema({
+    //connect the user schemas with the profile schema
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
@@ -23,7 +24,7 @@ const ProfileSchema = new Schema({
     },
     status: {
         type: String,
-        required: true
+        required: false
     },
     skills: {
         type: [String],
