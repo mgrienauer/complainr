@@ -108,6 +108,26 @@ router.post(
         })
     }
 )
+
+// @route   DELETE api/profile
+// @desc    Delete a user and their profile
+// @access  Private
+
+router.delete(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        //find user and remove their profile with the user id sent in request
+        Profile.findOneAndRemove({ user: req.user.id })
+            .then(() => {
+                //find user and remove their account
+                User.findOneAndRemove({ _id: req.user.id }).then(() => 
+                    //return success as true to frontend if succesfully deleted
+                    res.json({ success: true })
+                )
+            })
+    }
+)
     
     
 
