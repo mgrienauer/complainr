@@ -85,5 +85,112 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), (req, res)
         })
 })
 
+// @route   POST api/posts/like/:id
+// @desc    Like a post by id
+// @access  Private
+router.post('/like/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    //find the profile of the user making the delete request
+    Profile.findOne({ user: req.user.id })
+        // search their profile for the post by id
+        .then(profile => {
+            Post.findById(req.params.id)
+                .then(post => {
+                    // if the post object's user id !== the user id sent by request, return error
+                    // we filter the post's likes array, if the like object has the user in it already,
+                    // we will return a 400 status that the user has already liked the post
+                    if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+                        return res.status(400).json({ alreadyliked: 'User has already liked post' })
+                    }
+                    //if a user has disliked the post, remove them from the dislike array
+                    post.dislikes = post.dislikes.filter(dislike => dislike.user.toString() !== req.user.id)
+                    // if user isn't already in the likes array, we will add thir id to beginning of array
+                    post.likes.unshift({ user: req.user.id })
+                    // save updated post to db
+                    post.save().then(post => res.json(post))
+                })
+                // use error catching if unable to find post in db
+                .catch(err => res.status(404).json({ postnotfound: 'no post found'}))
+        })
+})
+
+// @route   POST api/posts/like/:id
+// @desc    Like a post by id
+// @access  Private
+router.post('/dislike/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    //find the profile of the user making the delete request
+    Profile.findOne({ user: req.user.id })
+        // search their profile for the post by id
+        .then(profile => {
+            Post.findById(req.params.id)
+                .then(post => {
+                    // if the post object's user id !== the user id sent by request, return error
+                    // we filter the post's likes array, if the like object has the user in it already,
+                    // we will return a 400 status that the user has already liked the post
+                    if (post.dislikes.filter(dislike => dislike.user.toString() === req.user.id).length > 0) {
+                        return res.status(400).json({ alreadydisliked: 'User has already disliked post' })
+                    }
+                    //if a user has liked the post, remove them from the likes array
+                    post.likes = post.likes.filter(like => like.user.toString() !== req.user.id)
+                    // if user isn't already in the likes array, we will add thir id to beginning of array
+                    post.dislikes.unshift({ user: req.user.id })
+                    // save updated post to db
+                    post.save().then(post => res.json(post))
+                })
+                // use error catching if unable to find post in db
+                .catch(err => res.status(404).json({ postnotfound: 'no post found'}))
+        })
+})
+
+// @route   POST api/posts/unlike/:id
+// @desc    unLike a post by id
+// @access  Private
+router.post('/unlike/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    //find the profile of the user making the delete request
+    Profile.findOne({ user: req.user.id })
+        // search their profile for the post by id
+        .then(profile => {
+            Post.findById(req.params.id)
+                .then(post => {
+                    // if the post object's user id !== the user id sent by request, return error
+                    // we filter the post's likes array, if the like object has the user in it already,
+                    // we will return a 400 status that the user has already liked the post
+                    if (post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+                        return res.status(400).json({ notliked: 'User has not liked post' })
+                    }
+                    // if user has already in the likes array, we will remove them from likes array
+                    post.likes = post.likes.filter(like => like.user.toString() !== req.user.id)
+                    // save updated post to db
+                    post.save().then(post => res.json(post))
+                })
+                // use error catching if unable to find post in db
+                .catch(err => res.status(404).json({ postnotfound: 'no post found'}))
+        })
+})
+
+// @route   POST api/posts/undislike/:id
+// @desc    undisLike a post by id
+// @access  Private
+router.post('/undislike/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    //find the profile of the user making the delete request
+    Profile.findOne({ user: req.user.id })
+        // search their profile for the post by id
+        .then(profile => {
+            Post.findById(req.params.id)
+                .then(post => {
+                    // if the post object's user id !== the user id sent by request, return error
+                    // we filter the post's likes array, if the like object has the user in it already,
+                    // we will return a 400 status that the user has already liked the post
+                    if (post.dislikes.filter(dislike => dislike.user.toString() === req.user.id).length === 0) {
+                        return res.status(400).json({ notliked: 'User has not disliked post' })
+                    }
+                    // if user has already in the likes array, we will remove them from likes array
+                    post.dislikes = post.dislikes.filter(dislike => dislike.user.toString() !== req.user.id)
+                    // save updated post to db
+                    post.save().then(post => res.json(post))
+                })
+                // use error catching if unable to find post in db
+                .catch(err => res.status(404).json({ postnotfound: 'no post found'}))
+        })
+})
 
 module.exports = router
