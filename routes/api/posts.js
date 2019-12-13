@@ -193,4 +193,53 @@ router.post('/undislike/:id', passport.authenticate('jwt', {session: false}), (r
         })
 })
 
+// @route   POST api/posts/comment/:id
+// @desc    comment on a post by id
+// @access  Private
+router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // destructure errors and isvalid from validatePostInput function
+    const { errors, isValid } = validatePostInput(req.body)
+    //check validation
+    if(!isValid){
+        //if any errors, send 400 with errors object
+        return res.status(400).json(errors)
+    }
+    
+    //find the post in db by id
+    Post.findById(req.params.id)
+        .then(post => {
+            //create a newComment object with the data the user sends
+            //in request and prepend it to the post's comments key (array)
+            const newComment = {
+                text: req.body.text,
+                name: req.body.name,
+                avatar: req.body.avatar,
+                user: req.user.id
+            }
+            //add new comment to comments array
+            post.comments.unshift(newComment)
+            //save to db and return post to frontend
+            post.save().then(post => res.json(post))
+        })
+        .catch(err => res.status(404).json({ postNotFound: 'No post found..yeesh' }))
+})
+
+// @route   DELETE api/posts/comment/:id/:comment_id
+// @desc    delete on a post by post id and comment id
+// @access  Private
+router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {   
+    //find the post in db by id
+    Post.findById(req.params.id)
+        .then(post => {
+            if (post.comments.filter(comment => comment._id.toString() === req.params.comment_id).length === 0) {
+                return res.status(404).json({ commentNotExist: 'Yikes...that comment does\'t exist' })
+            }
+            //filter post.comments to remove the user specified comment by id
+            post.comments = post.comments.filter(comment => comment._id.toString() !== req.params.comment_id)
+            //save updated post to db and return to frontend
+            post.save().then(post => res.json(post))
+        })
+        .catch(err => res.status(404).json({ postNotFound: 'No post found..yeesh' }))
+})
+
 module.exports = router
