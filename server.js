@@ -18,6 +18,12 @@ app.use(bodyParser.json())
 //DB config
 const db = require('./config/keys').mongoURI
 
+//fix deprecations: https://mongoosejs.com/docs/deprecations.html
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 //coonect to mongodb with mongoose
 mongoose
     .connect(db)
