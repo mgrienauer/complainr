@@ -33,6 +33,15 @@ class Register extends Component {
       this.props.registerUser(newUser)
   }
 
+  componentDidMount() {
+    //on component mount, check if user is authernticated,
+    //if so, user react-router history.push method to redirect to
+    //the dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
+  }
+
   render() {
       //destructure errors from state for conditional classnames
       const { errors } = this.props

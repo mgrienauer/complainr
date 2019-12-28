@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-export default class Landing extends Component {
+class Landing extends Component {
+    componentDidMount() {
+        //on component mount, check if user is authernticated,
+        //if so, user react-router history.push method to redirect to
+        //the dashboard
+        if (this.props.auth.isAuthenticated) {
+          this.props.history.push('/dashboard')
+        }
+    }
+
     render() {
         return (
             <div className="landing">
@@ -25,3 +36,15 @@ export default class Landing extends Component {
         )
     }
 }
+
+//define prop types this component should receive
+Landing.propTypes = {
+    auth: PropTypes.object.isRequired
+}
+
+//get deired state from redux
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(Landing)
