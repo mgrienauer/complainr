@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { compose } from 'redux'
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
 class Navbar extends Component {
   onLogoutClick = event => {
-    event.preventDefault();
-    this.props.logoutUser();
+    event.preventDefault()
+    this.props.logoutUser()
+    this.props.history.push("/")
   };
 
   render() {
@@ -16,12 +18,12 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a href="#" onClick={this.onLogoutClick}>
+          <a href="#" className="nav-link" onClick={this.onLogoutClick}>
               <img 
                 src={user.avatar} 
                 alt={user.name} 
                 title="Must have gravatar linked to email for profile img"
-                style={{ 'width': '25px', marginRight: '5px' }}
+                style={{ 'width': '25px', marginRight: '7px', borderRadius: '50%' }}
             />
             Logout
           </a>
@@ -87,4 +89,10 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+//we are using compose and withRouter because Navbar isnt rendered inside of 
+//Route component, but we need the props that Route provides so that
+//we can redirect on logout
+export default compose(
+    withRouter,
+    connect(mapStateToProps, { logoutUser })
+  )(Navbar);
