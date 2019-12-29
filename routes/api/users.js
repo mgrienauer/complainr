@@ -126,7 +126,7 @@ router.post('/login', (req, res) => {
 
                     //if promise is rejected or error, return 400 error 
                     } else {
-                        errors.password = 'Incorrect password'
+                        errors.password = 'Oof... Incorrect password'
                         return res.status(400).json(errors)
                     }
                 })
