@@ -4,7 +4,7 @@ const isEmpty = require('./is_empty')
 
 //create and export function that validates user input when they are registering
 module.exports = function validateLoginInput(data) {
-    //create object literal so store errors
+    //create object literal to store errors
     let errors = {}
 
     //validator only checks strings, so we have to convert undefined / null to an empty string first

@@ -1,6 +1,8 @@
 import React from 'react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
+//create Textfieldgroup higher order component to declutter
+//places where I need a form
 const TextFieldGroup = ({
     name,
     placeholder,
@@ -15,16 +17,18 @@ const TextFieldGroup = ({
     return (
         <div className="form-group">
             <input
-            type={type}
-            className={
-                error
-                ? "form-control form-control-lg is-invalid" 
-                : "form-control form-control-lg"
-            }
-            placeholder={placeholder}
-            name={name}
-            value={value}
-            onChange={onChange}
+                type={type}
+                className={
+                    error
+                    ? "form-control form-control-lg is-invalid" 
+                    : "form-control form-control-lg"
+                }
+                placeholder={placeholder}
+                name={name}
+                value={value}
+                onChange={onChange}
+                label={label}
+                disabled={disabled}
             />
             {info && (<small className='form-text text-muted'>{info}</small>)}
             {error && (<div className='invalid-feedback'>{error}</div>)}
@@ -37,7 +41,7 @@ TextFieldGroup.propTypes = {
     name: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     error: PropTypes.string,
     info: PropTypes.string,
     type: PropTypes.string.isRequired,
