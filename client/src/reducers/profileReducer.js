@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_LOADING } from '../actions/types'
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from '../actions/types'
 
 const initState = {
     profile: null,
@@ -12,7 +12,7 @@ export default function(state = initState, action) {
         case PROFILE_LOADING:
             return {
                 ...state,
-                laoding: true
+                loading: true
             }
         //if we get profile data from action, we want to set the profile
         //state to the response from the backend, and set loading to false
@@ -22,6 +22,12 @@ export default function(state = initState, action) {
                 ...state,
                 profile: action.payload,
                 loading: false
+            }
+        //clear the profile state, probably will be on logout
+        case CLEAR_CURRENT_PROFILE:
+            return {
+                ...state,
+                profile: null
             }
         default:
             return state

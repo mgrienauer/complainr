@@ -4,11 +4,17 @@ import PropTypes from "prop-types";
 import { compose } from 'redux'
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from '../../actions/profileActions'
+
 
 class Navbar extends Component {
   onLogoutClick = event => {
     event.preventDefault()
+    //clear jwt token and clear user redux state
     this.props.logoutUser()
+    //clear profile data in redux state
+    this.props.clearCurrentProfile()
+    //redirect to login page
     this.props.history.push("/login")
   };
 
@@ -94,5 +100,5 @@ const mapStateToProps = state => ({
 //we can redirect on logout
 export default compose(
     withRouter,
-    connect(mapStateToProps, { logoutUser })
+    connect(mapStateToProps, { logoutUser, clearCurrentProfile })
   )(Navbar);
