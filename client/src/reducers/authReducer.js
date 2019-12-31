@@ -1,5 +1,5 @@
 import { SET_CURRENT_USER } from '../actions/types'
-import isEmpty from '../validatoin/is-empty'
+import isEmpty from '../validation/is-empty'
 
 const initState = {
     isAuthenticated: false,
