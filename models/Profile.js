@@ -26,7 +26,7 @@ const ProfileSchema = new Schema({
         type: String,
         required: false
     },
-    skills: {
+    complaints: {
         type: [String],
         required: true
     },
