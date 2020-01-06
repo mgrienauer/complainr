@@ -17,7 +17,30 @@ class CreateProfile extends Component {
         facebook: '',
         errors: {}
     }
+
+    onSubmit = (event) => {
+        event.preventDefault()
+        console.log('submit')
+    }
+
+    onChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value })
+    }
+
     render() {
+        const { errors } = this.props
+
+        //selection of status options
+        const options = [
+           { label: 'Set Current Status', value: 0 },
+           { label: 'Whiner', value: 'Whiner' },
+           { label: 'Weenie', value: 'Weenie' },
+           { label: 'Griper', value: 'Griper' },
+           { label: 'Wet Blaket', value: 'Wet Blaket' },
+           { label: 'Wambulance Driver', value: 'Wambulance Driver' },
+           { label: 'Boohooer', value: 'Boohooer' },
+        ]
+
         return (
             <div className="create-profile">
                 <div className="container">
@@ -31,6 +54,15 @@ class CreateProfile extends Component {
                         </div>
                     </div>
                 </div>
+                <form onSubmit={this.onSubmit}>
+                    <TextFieldGroup
+                        placeholder="* Profile Handle"
+                        name="handle"
+                        onChange={this.onChange}
+                        error={errors.handle}
+                        info="This is a display name that other users will see you by"
+                    />
+                </form>
             </div>
         )
     }

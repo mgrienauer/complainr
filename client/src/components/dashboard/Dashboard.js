@@ -17,8 +17,8 @@ class Dashboard extends Component {
         let dashboardContent
         if (profile === null || loading) {
             dashboardContent = 
-                <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
+                <div className="spinner-border text-primary" role="status">
+                    <span className="sr-only">Loading...</span>
                 </div>
         } else {
             //check if user already has profile
@@ -29,7 +29,10 @@ class Dashboard extends Component {
                 dashboardContent = 
                 <div>
                     <p className="lead text-muted">Welcome {user.name}</p>
-                    <p>You have not yet set up a profile. Please boss up and set one up.</p>
+                    <p>
+                        You have not yet set up a profile. We want to hear your complaints,
+                        but need to know some of your sad backstory first.
+                    </p>
                     <Link to="/create-profile" className="btn btn-lg btn-info">Create Profile</Link>
                 </div>
             }
