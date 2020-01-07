@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
+
 import TextFieldGroup from '../common/TextFieldGroup'
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup'
 import InputGroup from '../common/InputGroup'
 import SelectListGroup from '../common/SelectListGroup'
-
+import { createProfile } from '../../actions/profileActions'
 
 
 class CreateProfile extends Component {
@@ -15,7 +17,7 @@ class CreateProfile extends Component {
         bio: '',
         location: '',
         status: '',
-        skills: '',
+        complaints: '',
         youtube: '',
         twitter: '',
         instagram: '',
@@ -24,12 +26,24 @@ class CreateProfile extends Component {
     }
 
     onSubmit = (event) => {
-        event.preventDefault()
-        console.log('submit')
+      event.preventDefault()
+      const profileData = {
+        handle: this.state.handle,
+        bio: this.state.bio,
+        location: this.state.location,
+        status: this.state.status,
+        complaints: this.state.complaints,
+        youtube: this.state.youtube,
+        twitter: this.state.twitter,
+        instagram: this.state.instagram,
+        facebook: this.state.facebook,
+      }
+
+      this.props.createProfile(profileData, this.props.history)
     }
 
     onChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
+      this.setState({ [event.target.name]: event.target.value })
     }
 
     render() {
@@ -111,7 +125,7 @@ class CreateProfile extends Component {
                 placeholder="Status"
                 name="status"
                 value={this.state.status}
-                error={errors.select}
+                error={errors.status}
                 onChange={this.onChange}
                 options={options}
                 info="Select your current status you big baby"
@@ -146,18 +160,24 @@ class CreateProfile extends Component {
             
             <div className="mb-3">
                 <button 
-                onClick={() => {
-                    this.setState(prevState => ({
-                    displaySocialInputs: !prevState.displaySocialInputs
-                    }))
-                }}
-                className="btn btn-light"
-                >
-                Add social network links (optional)
+                  type="button"
+                  onClick={() => {
+                      this.setState(prevState => ({
+                      displaySocialInputs: !prevState.displaySocialInputs
+                      }))
+                  }}
+                  className="btn btn-light"
+                  >
+                  Add social network links (optional)
                 </button>
             </div>
             {socialInputs}
-            <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+            <input 
+              type="submit" 
+              value="Submit" 
+              className="btn btn-info btn-block mt-4" 
+              onClick={this.onSubmit}
+            />
             
           </div>
         );
@@ -175,4 +195,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps)(CreateProfile)
+export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile))
