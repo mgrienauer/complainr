@@ -70,9 +70,10 @@ router.post(
         if(req.body.bio) profileFields.bio = req.body.bio
         if(req.body.location) profileFields.location = req.body.location
         if(req.body.status) profileFields.status = req.body.status
+        if(req.body.complaints) profileFields.complaints = req.body.complaints
         //split skills into an array (theyre coming as CSV)
-        if(typeof req.body.skills !== 'undefiend') {
-            profileFields.skills = req.body.skills.split(',')
+        if(typeof req.body.complaints !== 'undefiend') {
+            profileFields.complaints = req.body.complaints.split(',')
         }
         //initialize empty object in profileFields to avoid error
         profileFields.social = {}

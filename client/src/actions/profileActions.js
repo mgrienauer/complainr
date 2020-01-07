@@ -24,6 +24,22 @@ export const getCurrentProfile = () => dispatch => {
         })
 }
 
+//create a profile
+export const createProfile = (profileData, history) => dispatch => {
+    //make a post request to profile endpoint with profileData
+    //the backend will handle storing on DB and validation
+    axios.post('/api/profile', profileData)
+        //redirect user to dashboard if success
+        .then(res => history.push('/dashboard'))
+        //dispatch GET_ERRORS to reducers if error
+        .catch(err => {
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        })
+}
+
 //profile loading function
 export const setProfileLoading = () => {
     return {
