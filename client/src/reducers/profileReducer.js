@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from '../actions/types'
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, DELETE_ACCOUNT } from '../actions/types'
 
 const initState = {
     profile: null,
@@ -28,6 +28,11 @@ export default function(state = initState, action) {
             return {
                 ...state,
                 profile: null
+            }
+        //delete the users profile and account
+        case DELETE_ACCOUNT:
+            return {
+                
             }
         default:
             return state

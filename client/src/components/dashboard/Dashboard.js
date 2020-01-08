@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getCurrentProfile } from '../../actions/profileActions'
+import { getCurrentProfile, deleteAccount } from '../../actions/profileActions'
 import { Link } from 'react-router-dom'
+import ProfileActions from './ProfileActions'
+
 
 class Dashboard extends Component {
     //once component mounts, fetch profile data from backend
     componentDidMount() {
         this.props.getCurrentProfile()
+    }
+
+    onDeleteClick = (event) => {
+        this.props.deleteAccount()
     }
 
     render() {
@@ -17,21 +23,32 @@ class Dashboard extends Component {
         let dashboardContent
         if (profile === null || loading) {
             dashboardContent = 
-                <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
+                <div className="spinner-border text-primary" role="status">
+                    <span className="sr-only">Loading...</span>
                 </div>
         } else {
             //check if user already has profile
             if(Object.keys(profile).length > 0){
-                dashboardContent = <h1>TODO: display profile</h1>
+                dashboardContent = (
+                    <div>
+                        <p className="lead text-muted">
+                            Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+                        </p>
+                        <ProfileActions />
+                        <div className="mb-0">
+                            <button onClick={this.onDeleteClick} className="btn btn-danger">Delete Account</button>
+                        </div>
+                    </div>
+                )
             } else {
                 //user is logged in but has no profile
-                dashboardContent = 
-                <div>
-                    <p className="lead text-muted">Welcome {user.name}</p>
-                    <p>You have not yet set up a profile. Please boss up and set one up.</p>
-                    <Link to="/create-profile" className="btn btn-lg btn-info">Create Profile</Link>
-                </div>
+                dashboardContent = (
+                    <div>
+                        <p className="lead text-muted">Welcome {user.name}</p>
+                        <p>You have not yet set up a profile. Please boss up and set one up.</p>
+                        <Link to="/create-profile" className="btn btn-lg btn-info">Create Profile</Link>
+                    </div>
+                )
             }
 
         }
@@ -54,6 +71,7 @@ class Dashboard extends Component {
 //define proptype that Dashboard expects to receive
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
+    deleteAccount: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired
 }
@@ -64,4 +82,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard)
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS, CLEAR_CURRENT_PROFILE } from './types'
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, DELETE_ACCOUNT, SET_CURRENT_USER, GET_ERRORS } from './types'
 
 //get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -22,6 +22,28 @@ export const getCurrentProfile = () => dispatch => {
                 payload: {}
             })
         })
+}
+
+//delete account and profile
+export const deleteAccount = () => dispatch => {
+    //after confirmation popup is clicked, delete profile
+    if (window.confirm("Are you sure you want to delete your account you big crybaby? This can't be undone")) {
+        //delete request to backend
+        axios.delete('/api/profile')
+        //use succesful response to set current user to empty object
+        .then(res => {
+            dispatch({
+                type: SET_CURRENT_USER,
+                payload: {}
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        })
+    }
 }
 
 //profile loading function
