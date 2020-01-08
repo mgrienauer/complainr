@@ -10,7 +10,8 @@ module.exports = function validateProfileInput(data) {
     //validator only checks strings, so we have to convert undefined / null to an empty string first
     data.handle = !isEmpty(data.handle) ? data.handle : ''
     data.status = !isEmpty(data.status) ? data.status : ''
-    data.skills = !isEmpty(data.skills) ? data.skills : ''
+    data.complaints = !isEmpty(data.complaints) ? data.complaints : ''
+    data.bio = !isEmpty(data.bio) ? data.bio : ''
 
     //validate that handle length is 2-40 chars
     if (!Validator.isLength(data.handle, { min:3, max:40 })) {
@@ -18,11 +19,15 @@ module.exports = function validateProfileInput(data) {
     }
     //validate that handle is not empty
     if (Validator.isEmpty(data.handle)) {
-        errors.handle = "Handle can't be empty..yeesh"
+        errors.handle = "Handle can't be empty... yeesh"
     }
     //validate that skills field isnt empty
-    if (Validator.isEmpty(data.skills)) {
-        errors.skills = "skills can't be empty..yeesh"
+    if (Validator.isEmpty(data.complaints)) {
+        errors.complaints = "Add some complaints, what're you a saint?"
+    }
+    //validate that bio field isnt empty
+    if (Validator.isEmpty(data.bio)) {
+        errors.bio = "Add a bio... are you really that uninteresting??"
     }
     //check social media and validate that they are URLs
     if(!isEmpty(data.youtube)) {
