@@ -11,12 +11,6 @@ const User = require('../../models/User')
 //load validation functions
 const validateProfileInput = require('../../validation/profile')
 
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-//handle get resuests for /users path
-router.get('/test', (req, res) => res.json({msg: "Profile working"}))
-
 // @route   GET api/profile
 // @desc    Get current user's profile
 // @access  Private
