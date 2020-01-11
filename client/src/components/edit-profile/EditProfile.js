@@ -76,6 +76,7 @@ class EditProfile extends Component {
 
     onChange = (event) => {
       const { value, name } = event.target;
+      //set errors for the field to blank if user begins typing again
       this.setState(prevState => ({
         errors: { ...prevState.errors, [name]: "" },
         [name]: value

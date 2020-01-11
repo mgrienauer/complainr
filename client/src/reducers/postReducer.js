@@ -1,3 +1,5 @@
+import { ADD_POST } from '../actions/types'
+
 const initState = {
     posts: [],
     post: {},
@@ -6,7 +8,12 @@ const initState = {
 
 export default function(state = initState, action) {
     switch(action.type) {
+        case ADD_POST: 
+            return {
+                ...state,
+                posts: [action.payload, ...state.posts]
+            }
         default: 
-        return state 
+            return state 
     }
 }
