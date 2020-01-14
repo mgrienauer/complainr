@@ -114,7 +114,7 @@ router.post('/like/:id', passport.authenticate('jwt', {session: false}), (req, r
 })
 
 // @route   POST api/posts/like/:id
-// @desc    Like a post by id
+// @desc    disike a post by id
 // @access  Private
 router.post('/dislike/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
     //find the profile of the user making the delete request
