@@ -1,13 +1,15 @@
-import { GET_ERRORS } from '../actions/types'
+import { GET_ERRORS, CLEAR_ERRORS } from "../actions/types";
 
-const initState = {}
+const initState = {};
 
 export default function(state = initState, action) {
-    switch(action.type){
-        //return the errors object into redux state
-        case GET_ERRORS:
-            return action.payload
-        default:
-            return state
-    }
+	switch (action.type) {
+		//return the errors object into redux state
+		case GET_ERRORS:
+			return action.payload;
+		case CLEAR_ERRORS:
+			return {};
+		default:
+			return state;
+	}
 }
