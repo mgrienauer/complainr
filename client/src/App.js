@@ -19,6 +19,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import CreateProfile from './components/create-profile/CreateProfile'
 import EditProfile from './components/edit-profile/EditProfile'
 import Posts from './components/posts/Posts'
+import Post from './components/post/Post'
 
 //checkfor localstorage for jwt token to see if user is authenticated
 //we do this in case a user reloads the page so they dont get logged out
@@ -63,6 +64,9 @@ function App() {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/feed" component={ Posts } />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/post/:id" component={ Post } />
             </Switch>
           </div>
           <Footer />
