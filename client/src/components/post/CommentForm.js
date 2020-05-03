@@ -8,9 +8,10 @@ class CommentForm extends Component {
 	state = {
 		text: "",
 		errors: this.props.errors ? this.props.errors : {},
+		remainingChars: 140,
 	};
 
-	onSubmit = event => {
+	onSubmit = (event) => {
 		event.preventDefault();
 		//get user from props.auth
 		const { user } = this.props.auth;
@@ -27,12 +28,16 @@ class CommentForm extends Component {
 		this.setState({ text: "" });
 	};
 
-	onChange = event => {
+	onChange = (event) => {
 		const { value, name } = event.target;
+
+		const charCount = value.length;
+		const remainingChars = 140 - charCount;
 		//set errors for the field to blank if user begins typing again
-		this.setState(prevState => ({
+		this.setState((prevState) => ({
 			errors: { ...prevState.errors, [name]: "" },
 			[name]: value,
+			remainingChars,
 		}));
 	};
 
@@ -42,13 +47,25 @@ class CommentForm extends Component {
 		}
 	}
 
+	renderRemainingChars = () => {
+		const { remainingChars } = this.state;
+
+		let content;
+		if (remainingChars > 0) {
+			content = <span className="text-muted">{remainingChars} / 140</span>;
+		} else if (remainingChars <= 0) {
+			content = <span className="text-danger">0 / 140</span>;
+		}
+		return content;
+	};
+
 	render() {
 		const { errors } = this.state;
 
 		return (
 			<div className="post-form mb-3">
 				<div className="card card-info">
-					<div className="card-header bg-info text-white">
+					<div className="card-header bg-success text-white">
 						Make a comment. We're on the edge of our seat...
 					</div>
 					<div className="card-body">
@@ -62,9 +79,18 @@ class CommentForm extends Component {
 									error={errors.text}
 								/>
 							</div>
-							<button type="submit" className="btn btn-dark">
-								Submit
-							</button>
+							<div className="d-flex w-100 text-center align-items-center">
+								<button
+									type="submit"
+									className="btn btn-success"
+									disabled={
+										!this.state.text.length || this.state.text.length > 140
+									}
+								>
+									Submit
+								</button>
+								<p className="ml-auto">{this.renderRemainingChars()}</p>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -80,7 +106,7 @@ CommentForm.propTypes = {
 	postId: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	auth: state.auth,
 	errors: state.errors,
 });
