@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import { Link } from "react-router-dom";
 import ProfileActions from "./ProfileActions";
+import Profile from "../profile/Profile";
 
 class Dashboard extends Component {
 	//once component mounts, fetch profile data from backend
@@ -36,10 +37,14 @@ class Dashboard extends Component {
 							<Link to={`/profile/handle/${profile.handle}`}>{user.name}</Link>
 						</p>
 						<ProfileActions />
-						<div className="mb-0">
-							<button onClick={this.onDeleteClick} className="btn btn-danger">
-								Delete Account
-							</button>
+						<h2 className="lead mb-3">Profile Preview</h2>
+						<Profile preview />
+						<div className="row mt-5">
+							<div className="col-12 d-flex justify-content-end">
+								<button onClick={this.onDeleteClick} className="btn btn-danger">
+									Delete Account
+								</button>
+							</div>
 						</div>
 					</div>
 				);

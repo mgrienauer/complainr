@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { getProfileByHandle } from "../../actions/profileActions";
+import {
+	getProfileByHandle,
+	getCurrentProfile,
+} from "../../actions/profileActions";
 
 import ProfileAbout from "./ProfileAbout";
 import ProfileHeader from "./ProfileHeader";
@@ -12,8 +15,10 @@ import ProfileHeader from "./ProfileHeader";
 class Profile extends Component {
 	componentDidMount() {
 		//if props is in the url query
-		if (this.props.match.params.handle) {
-			this.props.getProfileByHandle(this.props.match.params.handle);
+		if (!this.props.preview) {
+			if (this.props.match.params.handle) {
+				this.props.getProfileByHandle(this.props.match.params.handle);
+			}
 		}
 	}
 
@@ -32,16 +37,18 @@ class Profile extends Component {
 		} else {
 			profileContent = (
 				<div>
-					<div className="row">
-						<div className="col-md-6">
-							<Link to="/profile" className="btn btn-light mb-3 float-left">
-								Back to Profiles
-							</Link>
+					{!this.props.preview && (
+						<div className="row">
+							<div className="col-md-6">
+								<Link to="/profile" className="btn btn-light mb-3 float-left">
+									Back to Profiles
+								</Link>
+							</div>
+							<div className="cold-md-6" />
 						</div>
-						<div className="cold-md-6" />
-					</div>
+					)}
 					<ProfileHeader profile={profile} />
-					<ProfileAbout />
+					<ProfileAbout profile={profile} />
 				</div>
 			);
 		}
@@ -60,11 +67,15 @@ class Profile extends Component {
 
 Profile.propTypes = {
 	profile: PropTypes.object.isRequired,
+	getProfileByHandle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	profile: state.profile,
-	getProfileByHandle: PropTypes.func.isRequired,
+	user_id: state.auth.user.id,
 });
 
-export default connect(mapStateToProps, { getProfileByHandle })(Profile);
+export default connect(mapStateToProps, {
+	getProfileByHandle,
+	getCurrentProfile,
+})(Profile);
