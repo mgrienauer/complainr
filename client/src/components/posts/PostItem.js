@@ -11,14 +11,14 @@ import {
 } from "../../actions/postActions";
 
 class PostItem extends Component {
-	onDeleteClick = postId => {
+	onDeleteClick = (postId) => {
 		this.props.deletePost(postId);
 	};
 
-	onLikeBtnClick = postId => {
+	onLikeBtnClick = (postId) => {
 		//get user id and likes array from post object
 		const { id } = this.props.auth.user;
-		const likes = this.props.post.likes.map(like => like.user);
+		const likes = this.props.post.likes.map((like) => like.user);
 
 		//if user hasn't already liked a post, dispatch likePost
 		if (!likes.includes(id)) {
@@ -29,10 +29,10 @@ class PostItem extends Component {
 		}
 	};
 
-	onDislikeBtnClick = postId => {
+	onDislikeBtnClick = (postId) => {
 		//get user id and dislikes array from post object
 		const { id } = this.props.auth.user;
-		const dislikes = this.props.post.dislikes.map(dislike => dislike.user);
+		const dislikes = this.props.post.dislikes.map((dislike) => dislike.user);
 
 		//if user hasn't already liked a post, dispatch likePost
 		if (!dislikes.includes(id)) {
@@ -46,7 +46,7 @@ class PostItem extends Component {
 	userHasLiked = () => {
 		//get user id and likes array from post object
 		const { id } = this.props.auth.user;
-		const likes = this.props.post.likes.map(like => like.user);
+		const likes = this.props.post.likes.map((like) => like.user);
 
 		if (likes.includes(id)) {
 			return true;
@@ -58,7 +58,7 @@ class PostItem extends Component {
 	userHasDisliked = () => {
 		//get user id and dislikes array from post object
 		const { id } = this.props.auth.user;
-		const dislikes = this.props.post.dislikes.map(dislike => dislike.user);
+		const dislikes = this.props.post.dislikes.map((dislike) => dislike.user);
 
 		if (dislikes.includes(id)) {
 			return true;
@@ -70,68 +70,80 @@ class PostItem extends Component {
 	render() {
 		const { post, auth, showActions } = this.props;
 		return (
-			<div className="card card-body mb-3">
-				<div className="row">
-					<div className="col-md-2">
-						<a href="profile.html">
-							<img
-								className="rounded-circle d-none d-md-block"
-								src={post.avatar}
-								alt="User's profile picture"
-								style={{ height: "50px", width: "50px" }}
-							/>
-						</a>
-						<br />
-						<p className="text-center">{post.name}</p>
+			<div className="card card-body mb-3 container">
+				<div className="row d-flex h-100">
+					<div className="col-2 d-flex flex-column justify-content-between align-items-center h-100 my-auto ">
+						<button
+							type="button"
+							className="btn btn-light mt-2 mb-1 p-1 p-md-2"
+							onClick={() => this.onLikeBtnClick(post._id)}
+						>
+							<div className="d-flex flex-column">
+								<i
+									className={`${
+										this.userHasLiked() ? "text-info" : "text-secondary"
+									} fas fa-arrow-up fa-lg mt-1 mb-1`}
+								></i>
+								<h3>😨</h3>
+							</div>
+							<span className="font-weight-bold">OOF</span>
+						</button>
+						<button
+							type="button"
+							className="btn btn-light mt-1 mb-1 p-1 p-md-2"
+							onClick={() => this.onDislikeBtnClick(post._id)}
+						>
+							<span className="font-weight-bold">MEH</span>
+							<div className="d-flex flex-column">
+								<h3>😒</h3>
+								<i
+									className={`${
+										this.userHasDisliked() ? "text-info" : "text-secondary"
+									} fas fa-arrow-down fa-lg mb-1 mt-1`}
+								></i>
+							</div>
+						</button>
 					</div>
-					<div className="col-md-10">
+
+					<div className="col-10 d-flex flex-column w-100">
+						<div className="d-flex align-items-center mb-3">
+							<Link to={`/profile/handle/${post.handle}`}>
+								<img
+									className="rounded-circle"
+									src={post.avatar}
+									alt="User's profile picture"
+									style={{ height: "50px", width: "50px" }}
+								/>
+							</Link>
+							<Link
+								to={`/profile/handle/${post.handle}`}
+								className="link-success ml-3"
+							>
+								{post.name}
+							</Link>
+						</div>
+
 						<p className="lead">{post.text}</p>
 
-						{showActions && (
-							<>
-								<button
-									type="button"
-									className="btn btn-light mr-1"
-									onClick={() => this.onLikeBtnClick(post._id)}
-								>
-									<i
-										className={`${
-											this.userHasLiked() ? "text-info" : "text-secondary"
-										} fas fa-thumbs-up`}
-									></i>
-									<span className="badge badge-light">{post.likes.length}</span>
-								</button>
-								<button
-									type="button"
-									className="btn btn-light mr-1"
-									onClick={() => this.onDislikeBtnClick(post._id)}
-								>
-									<i
-										className={`${
-											this.userHasDisliked() ? "text-info" : "text-secondary"
-										} fas fa-thumbs-down`}
-									></i>
-									<span className="badge badge-light">
-										{post.dislikes.length}
-									</span>
-								</button>
-								<Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-									Comments
+						<div className="d-flex flex-row w-100 mt-auto">
+							{showActions && (
+								<Link to={`/post/${post._id}`} className="btn btn-info">
+									Comments · {post.comments.length}
 								</Link>
-							</>
-						)}
+							)}
 
-						{post.user === auth.user.id ? (
-							<button
-								type="button"
-								className="btn btn-danger mr-1"
-								onClick={() => this.onDeleteClick(post._id)}
-							>
-								<i className="fas fa-trash" />
-							</button>
-						) : (
-							""
-						)}
+							{post.user === auth.user.id ? (
+								<button
+									type="button"
+									className="btn btn-danger ml-auto"
+									onClick={() => this.onDeleteClick(post._id)}
+								>
+									<i className="fas fa-trash" />
+								</button>
+							) : (
+								""
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -151,7 +163,7 @@ PostItem.propTypes = {
 	unDislikePost: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
 

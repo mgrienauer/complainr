@@ -15,9 +15,12 @@ class PostForm extends Component {
 		event.preventDefault();
 		//get user from props.auth
 		const { user } = this.props.auth;
+		//get current profile
+		const { handle } = this.props.profile.profile;
 		//create a newPost object with data to send to backend
 		const newPost = {
 			text: this.state.text,
+			handle,
 			name: user.name,
 			avatar: user.avatar,
 		};
@@ -102,11 +105,13 @@ PostForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
+	profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
 	errors: state.errors,
+	profile: state.profile,
 });
 
 export default connect(mapStateToProps, { addPost })(PostForm);

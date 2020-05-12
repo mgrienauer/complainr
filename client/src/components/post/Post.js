@@ -34,7 +34,7 @@ class Post extends Component {
 
 		return (
 			<div className="post">
-				<div className="container">
+				<div className="container" style={{ maxWidth: "700px" }}>
 					<div className="row">
 						<div className="col-md-12">
 							<Link to="/feed" className="btn btn-light mb-3">
