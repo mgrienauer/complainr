@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
 	getProfileByHandle,
+	getProfileById,
 	getCurrentProfile,
 } from "../../actions/profileActions";
 
@@ -11,12 +12,13 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileHeader from "./ProfileHeader";
 
 //profile container component to fetch user
-//profile data via their handle
+//profile data via their handle or id
 class Profile extends Component {
 	componentDidMount() {
 		//if props is in the url query
 		if (!this.props.preview) {
 			if (this.props.match.params.handle) {
+				console.log("handle", this.props.match.params.handle);
 				this.props.getProfileByHandle(this.props.match.params.handle);
 			}
 		}
@@ -40,8 +42,8 @@ class Profile extends Component {
 					{!this.props.preview && (
 						<div className="row">
 							<div className="col-md-6">
-								<Link to="/profile" className="btn btn-light mb-3 float-left">
-									Back to Profiles
+								<Link to="/feed" className="btn btn-light mb-3 float-left">
+									Back to Feed
 								</Link>
 							</div>
 							<div className="cold-md-6" />
@@ -68,6 +70,7 @@ class Profile extends Component {
 Profile.propTypes = {
 	profile: PropTypes.object.isRequired,
 	getProfileByHandle: PropTypes.func.isRequired,
+	getProfileById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -77,5 +80,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
 	getProfileByHandle,
+	getProfileById,
 	getCurrentProfile,
 })(Profile);

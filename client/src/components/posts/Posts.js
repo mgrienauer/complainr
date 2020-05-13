@@ -31,9 +31,9 @@ class Posts extends Component {
 
 		return (
 			<div className="feed">
-				<div className="container">
+				<div className="container p-0" style={{ maxWidth: "700px" }}>
 					<div className="row">
-						<div className="col-md-12">
+						<div className="col-12">
 							{isAuthenticated ? <PostForm /> : null}
 							{postContent}
 						</div>

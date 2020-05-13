@@ -16,9 +16,12 @@ class CommentForm extends Component {
 		//get user from props.auth
 		const { user } = this.props.auth;
 		const { postId } = this.props;
+		//get current profile
+		const { handle } = this.props.profile.profile;
 		//create a newPost object with data to send to backend
 		const newComment = {
 			text: this.state.text,
+			handle,
 			name: user.name,
 			avatar: user.avatar,
 		};
@@ -104,11 +107,13 @@ CommentForm.propTypes = {
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
 	postId: PropTypes.string.isRequired,
+	profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
 	auth: state.auth,
 	errors: state.errors,
+	profile: state.profile,
 });
 
 export default connect(mapStateToProps, { addComment })(CommentForm);

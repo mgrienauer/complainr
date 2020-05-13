@@ -56,6 +56,29 @@ export const getProfileByHandle = (handle) => (dispatch) => {
 		});
 };
 
+//get profile by user id
+export const getProfileById = (user_id) => (dispatch) => {
+	//set profile state to loading until we get data back from server
+	dispatch(setProfileLoading());
+	//get profile data from backend
+	axios
+		.get(`/api/profile/user/${user_id}`)
+		.then((res) => {
+			dispatch({
+				type: GET_PROFILE,
+				payload: res.data,
+			});
+		})
+		//we still dispatch GET_PROFILE because a user may have registered
+		//and not set up a profile yet. in that case it will return an empty object
+		.catch((err) => {
+			dispatch({
+				type: GET_PROFILE,
+				payload: null,
+			});
+		});
+};
+
 // Create Profile
 export const createProfile = (profileData, history) => (dispatch) => {
 	axios

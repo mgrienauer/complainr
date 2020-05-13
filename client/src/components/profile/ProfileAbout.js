@@ -5,7 +5,6 @@ import isEmpty from "../../validation/is-empty";
 export default class ProfileAbout extends Component {
 	render() {
 		const { profile } = this.props;
-		console.log(profile.status);
 		//get users first name
 		const firstName = profile.user.name.trim().split(" ")[0];
 		//get complaints from profile obj

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { deleteComment } from "../../actions/postActions";
+import { Link } from "react-router-dom";
 
 class CommentItem extends Component {
 	onDeleteClick(postId, commentId) {
@@ -13,27 +14,38 @@ class CommentItem extends Component {
 		return (
 			<div className="card card-body mb-3">
 				<div className="row">
-					<div className="col-md-2">
-						<a href="profile.html">
+					<div className="col-12 d-flex align-items-center mb-3">
+						<Link to={`/profile/handle/${comment.handle}`}>
 							<img
-								className="rounded-circle d-none d-md-block"
+								className="rounded-circle d-md-block"
 								src={comment.avatar}
 								alt="user avatar"
+								style={{ height: "50px", width: "50px" }}
 							/>
-						</a>
-						<br />
-						<p className="text-center">{comment.name}</p>
-					</div>
-					<div className="col-md-10">
-						<p className="lead">{comment.text}</p>
-						{comment.user === auth.user.id ? (
-							<button
-								type="button"
-								className="btn btn-danger mr-1"
-								onClick={() => this.onDeleteClick(postId, comment._id)}
+						</Link>
+						<div className="d-flex flex-column ml-3 align-items-center justify-content-center text-center">
+							<p className="mb-0">{comment.name}</p>
+							<Link
+								to={`/profile/handle/${comment.handle}`}
+								className="link-success"
 							>
-								<i className="fas fa-trash" />
-							</button>
+								{comment.handle}
+							</Link>
+						</div>
+					</div>
+					<div className="col-12">
+						<p className="lead">{comment.text}</p>
+
+						{comment.user === auth.user.id ? (
+							<div className="d-flex w-100 justify-content-end">
+								<button
+									type="button"
+									className="btn btn-danger ml-auto"
+									onClick={() => this.onDeleteClick(postId, comment._id)}
+								>
+									<i className="fas fa-trash" />
+								</button>
+							</div>
 						) : (
 							""
 						)}
@@ -51,7 +63,7 @@ CommentItem.propTypes = {
 	auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
 
