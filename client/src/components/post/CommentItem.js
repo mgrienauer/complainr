@@ -15,20 +15,23 @@ class CommentItem extends Component {
 			<div className="card card-body mb-3">
 				<div className="row">
 					<div className="col-12 d-flex align-items-center mb-3">
-						<Link to={`/profile/handle/${comment.name}`}>
+						<Link to={`/profile/handle/${comment.handle}`}>
 							<img
-								className="rounded-circle d-none d-md-block"
+								className="rounded-circle d-md-block"
 								src={comment.avatar}
 								alt="user avatar"
 								style={{ height: "50px", width: "50px" }}
 							/>
 						</Link>
-						<Link
-							to={`/profile/handle/${comment.name}`}
-							className="link-success ml-3"
-						>
-							{comment.name}
-						</Link>
+						<div className="d-flex flex-column ml-3 align-items-center justify-content-center text-center">
+							<p className="mb-0">{comment.name}</p>
+							<Link
+								to={`/profile/handle/${comment.handle}`}
+								className="link-success"
+							>
+								{comment.handle}
+							</Link>
+						</div>
 					</div>
 					<div className="col-12">
 						<p className="lead">{comment.text}</p>

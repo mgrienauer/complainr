@@ -69,13 +69,14 @@ class PostItem extends Component {
 
 	render() {
 		const { post, auth, showActions } = this.props;
+		let complaintValidity = post.likes.length - post.dislikes.length;
 		return (
 			<div className="card card-body mb-3 container">
 				<div className="row d-flex h-100">
 					<div className="col-2 d-flex flex-column justify-content-between align-items-center h-100 my-auto ">
 						<button
 							type="button"
-							className="btn btn-light mt-2 mb-1 p-1 p-md-2"
+							className="btn btn-light mt-2 mb-1 p-0 p-md-2"
 							onClick={() => this.onLikeBtnClick(post._id)}
 						>
 							<div className="d-flex flex-column">
@@ -90,7 +91,7 @@ class PostItem extends Component {
 						</button>
 						<button
 							type="button"
-							className="btn btn-light mt-1 mb-1 p-1 p-md-2"
+							className="btn btn-light mt-1 mb-1 p-0 p-md-2"
 							onClick={() => this.onDislikeBtnClick(post._id)}
 						>
 							<span className="font-weight-bold">MEH</span>
@@ -106,7 +107,7 @@ class PostItem extends Component {
 					</div>
 
 					<div className="col-10 d-flex flex-column w-100">
-						<div className="d-flex align-items-center mb-3">
+						<div className="d-flex flex-wrap align-items-center mb-3">
 							<Link to={`/profile/handle/${post.handle}`}>
 								<img
 									className="rounded-circle"
@@ -115,12 +116,18 @@ class PostItem extends Component {
 									style={{ height: "50px", width: "50px" }}
 								/>
 							</Link>
-							<Link
-								to={`/profile/handle/${post.handle}`}
-								className="link-success ml-3"
-							>
-								{post.name}
-							</Link>
+							<div className="d-flex flex-column ml-3 align-items-center justify-content-center text-center">
+								<p className="p-0 mb-0">{post.name}</p>
+								<Link
+									to={`/profile/handle/${post.handle}`}
+									className="link-success"
+								>
+									{post.handle}
+								</Link>
+							</div>
+							<h5 className="ml-2 mt-2 ml-sm-auto">
+								Complaint Validity: {complaintValidity}
+							</h5>
 						</div>
 
 						<p className="lead">{post.text}</p>
