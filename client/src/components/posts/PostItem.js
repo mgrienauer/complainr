@@ -72,7 +72,35 @@ class PostItem extends Component {
 		let complaintValidity = post.likes.length - post.dislikes.length;
 		return (
 			<div className="card card-body mb-3 container">
-				<div className="row d-flex h-100">
+				<div className="row d-flex align-items-center mb-3">
+					<div className="col-2 p-0 d-flex justify-content-center">
+						<Link to={`/profile/handle/${post.handle}`}>
+							<img
+								className="rounded-circle"
+								src={post.avatar}
+								alt="User's profile picture"
+								style={{ height: "50px", width: "50px" }}
+							/>
+						</Link>
+					</div>
+					<div className="col-10 d-flex align-items-center flex-wrap">
+						<div className="d-flex flex-column align-items-start">
+							<p className="p-0 mb-0">{post.name}</p>
+							<Link
+								to={`/profile/handle/${post.handle}`}
+								className="link-success"
+							>
+								@{post.handle}
+							</Link>
+						</div>
+
+						<h6 className="ml-auto text-center">
+							Complaint Validity: {complaintValidity}
+						</h6>
+					</div>
+				</div>
+
+				<div className="row">
 					<div className="col-2 d-flex flex-column justify-content-between align-items-center h-100 my-auto ">
 						<button
 							type="button"
@@ -85,7 +113,7 @@ class PostItem extends Component {
 										this.userHasLiked() ? "text-info" : "text-secondary"
 									} fas fa-arrow-up fa-lg mt-1 mb-1`}
 								></i>
-								<h3>😨</h3>
+								<h3>😬</h3>
 							</div>
 							<span className="font-weight-bold">OOF</span>
 						</button>
@@ -107,29 +135,6 @@ class PostItem extends Component {
 					</div>
 
 					<div className="col-10 d-flex flex-column w-100">
-						<div className="d-flex flex-wrap align-items-center mb-3">
-							<Link to={`/profile/handle/${post.handle}`}>
-								<img
-									className="rounded-circle"
-									src={post.avatar}
-									alt="User's profile picture"
-									style={{ height: "50px", width: "50px" }}
-								/>
-							</Link>
-							<div className="d-flex flex-column ml-3 align-items-center justify-content-center text-center">
-								<p className="p-0 mb-0">{post.name}</p>
-								<Link
-									to={`/profile/handle/${post.handle}`}
-									className="link-success"
-								>
-									{post.handle}
-								</Link>
-							</div>
-							<h5 className="ml-2 mt-2 ml-sm-auto">
-								Complaint Validity: {complaintValidity}
-							</h5>
-						</div>
-
 						<p className="lead">{post.text}</p>
 
 						<div className="d-flex flex-row w-100 mt-auto">
