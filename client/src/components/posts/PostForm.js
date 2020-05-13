@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addPost } from "../../actions/postActions";
+import { getCurrentProfile } from "../../actions/profileActions";
 
 class PostForm extends Component {
 	state = {
@@ -11,12 +12,17 @@ class PostForm extends Component {
 		errors: this.props.errors ? this.props.errors : {},
 	};
 
+	//once component mounts, fetch profile data from backend
+	componentDidMount() {
+		this.props.getCurrentProfile();
+	}
+
 	onSubmit = (event) => {
 		event.preventDefault();
 		//get user from props.auth
 		const { user } = this.props.auth;
 		//get current profile
-		const { handle } = this.props.profile.profile;
+		const { handle } = this.props.profile.profile || "";
 		//create a newPost object with data to send to backend
 		const newPost = {
 			text: this.state.text,
@@ -103,6 +109,7 @@ class PostForm extends Component {
 
 PostForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
+	getCurrentProfile: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
 	profile: PropTypes.object.isRequired,
@@ -114,4 +121,6 @@ const mapStateToProps = (state) => ({
 	profile: state.profile,
 });
 
-export default connect(mapStateToProps, { addPost })(PostForm);
+export default connect(mapStateToProps, { addPost, getCurrentProfile })(
+	PostForm,
+);

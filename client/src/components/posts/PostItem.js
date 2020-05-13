@@ -119,7 +119,7 @@ class PostItem extends Component {
 						</button>
 						<button
 							type="button"
-							className="btn btn-light mt-1 mb-1 p-0 p-md-2"
+							className="btn btn-light mt-1 p-0 p-md-2"
 							onClick={() => this.onDislikeBtnClick(post._id)}
 						>
 							<span className="font-weight-bold">MEH</span>

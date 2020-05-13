@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addComment } from "../../actions/postActions";
+import { getCurrentProfile } from "../../actions/profileActions";
 
 class CommentForm extends Component {
 	state = {
@@ -10,6 +11,11 @@ class CommentForm extends Component {
 		errors: this.props.errors ? this.props.errors : {},
 		remainingChars: 140,
 	};
+
+	//once component mounts, fetch profile data from backend
+	componentDidMount() {
+		this.props.getCurrentProfile();
+	}
 
 	onSubmit = (event) => {
 		event.preventDefault();
@@ -104,6 +110,7 @@ class CommentForm extends Component {
 
 CommentForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
+	getCurrentProfile: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
 	postId: PropTypes.string.isRequired,
@@ -116,4 +123,6 @@ const mapStateToProps = (state) => ({
 	profile: state.profile,
 });
 
-export default connect(mapStateToProps, { addComment })(CommentForm);
+export default connect(mapStateToProps, { addComment, getCurrentProfile })(
+	CommentForm,
+);
