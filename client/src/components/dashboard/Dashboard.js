@@ -36,7 +36,7 @@ class Dashboard extends Component {
 							Welcome{" "}
 							<Link to={`/profile/handle/${profile.handle}`}>{user.name}</Link>
 						</p>
-						<ProfileActions />
+						<ProfileActions handle={profile.handle} />
 						<h2 className="lead mb-3">Profile Preview</h2>
 						<Profile preview />
 						<div className="row mt-5">

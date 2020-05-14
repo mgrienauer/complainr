@@ -22,6 +22,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import Profile from "./components/profile/Profile";
+import PostsByUser from "./components/posts/PostsByUser";
 
 //checkfor localstorage for jwt token to see if user is authenticated
 //we do this in case a user reloads the page so they dont get logged out
@@ -58,6 +59,7 @@ function App() {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/feed" component={Posts} />
 						<Route exact path="/profile/handle/:handle" component={Profile} />
+						<Route exact path="/posts/byUser/:handle" component={PostsByUser} />
 						<Switch>
 							<PrivateRoute exact path="/dashboard" component={Dashboard} />
 						</Switch>
