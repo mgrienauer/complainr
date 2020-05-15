@@ -8,7 +8,7 @@ const ProfileActions = (props) => {
 				<i className="fas fa-user-circle text-success mr-1"></i> Edit Profile
 			</Link>
 			<Link to={`/posts/byUser/${props.handle}`} className="btn btn-primary">
-				<i className="fab fa-black-tie text-success mr-1"></i>
+				<i className="fas fa-pen text-success mr-2"></i>
 				Your Posts
 			</Link>
 			<a href="add-education.html" className="btn btn-primary">
