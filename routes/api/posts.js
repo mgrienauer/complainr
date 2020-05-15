@@ -35,7 +35,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 	//retrieve a single post by its id
 	Post.findById(req.params.id)
-		.then((post) => res.json(post))
+		.then((posts) => res.json(posts))
 		.catch((err) =>
 			res.status(404).json({ nopostsfound: "No posts found with that id" }),
 		);

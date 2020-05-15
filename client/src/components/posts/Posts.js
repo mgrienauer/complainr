@@ -34,7 +34,7 @@ class Posts extends Component {
 				<div className="container p-0" style={{ maxWidth: "700px" }}>
 					<div className="row">
 						<div className="col-12">
-							{isAuthenticated ? <PostForm /> : null}
+							{isAuthenticated && !this.props.hideForm ? <PostForm /> : null}
 							{postContent}
 						</div>
 					</div>

@@ -18,7 +18,6 @@ class Profile extends Component {
 		//if props is in the url query
 		if (!this.props.preview) {
 			if (this.props.match.params.handle) {
-				console.log("handle", this.props.match.params.handle);
 				this.props.getProfileByHandle(this.props.match.params.handle);
 			}
 		}

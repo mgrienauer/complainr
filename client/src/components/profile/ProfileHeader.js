@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import isEmpty from "../../validation/is-empty";
+import { Link } from "react-router-dom";
 
 export default class ProfileHeader extends Component {
 	render() {
@@ -20,7 +21,13 @@ export default class ProfileHeader extends Component {
 						</div>
 						<div className="text-center">
 							<h1 className="display-4 text-center">{profile.user.name}</h1>
+							<h4 className="text-center">@{profile.handle}</h4>
+
 							<p className="lead text-center">{profile.status}</p>
+							<Link to={`/posts/byUser/${profile.handle}`}>
+								<button className="btn btn-light mb-2">View Posts</button>
+							</Link>
+
 							<p>
 								{isEmpty(profile.location) ? null : (
 									<span>{profile.location}</span>
