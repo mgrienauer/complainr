@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import "bootswatch/dist/flatly/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
