@@ -11,7 +11,7 @@ export default class ProfileHeader extends Component {
 				<div className="col-md-12">
 					<div className="card card-body bg-primary text-white mb-3">
 						<div className="row">
-							<div className="col-4 col-md-3 m-auto">
+							<div className="col-12 d-flex justify-content-center">
 								<img
 									className="rounded-circle"
 									src={profile.user.avatar}
