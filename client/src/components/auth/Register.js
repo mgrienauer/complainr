@@ -48,10 +48,10 @@ class Register extends Component {
 		const { errors } = this.props;
 
 		return (
-			<div className="register">
-				<div className="container">
+			<div className="register login form-width m-auto">
+				<div className="container bg-light rounded p-4">
 					<div className="row">
-						<div className="col-md-8 m-auto">
+						<div className="col-12 m-auto">
 							<h1 className="display-4 text-center">Sign Up</h1>
 							<p className="lead text-center">Create your Complainr acconut</p>
 							<form noValidate onSubmit={this.onSubmit}>
@@ -93,7 +93,7 @@ class Register extends Component {
 
 								<input
 									type="submit"
-									className="btn btn-success btn-block mt-4"
+									className="btn btn-primary rounded-pill btn-block mt-4"
 								/>
 							</form>
 						</div>

@@ -1,1 +1,28 @@
+$enable-gradients: true;
+
+$theme-colors: (
+	"primary": #7209b7,
+	"secondary": #d100d1,
+	"light": #efd9ce,
+	"info": #4cc9f0,
+);
+
+$enable-rounded: true;
+
+.App {
+	background-color: #efd9ce;
+}
+
+.content-container {
+	min-height: calc(100vh - 138px);
+}
+
+.btn-pill {
+	border-radius: 100px !important;
+}
+
+.form-width {
+	max-width: 500px;
+}
+
 @import "../node_modules/bootstrap/scss/bootstrap";

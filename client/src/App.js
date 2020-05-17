@@ -53,7 +53,7 @@ function App() {
 					<Navbar />
 					<Route exact path="/" component={Landing} />
 
-					<div className="container">
+					<div className="container content-container">
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/feed" component={Posts} />

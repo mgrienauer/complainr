@@ -9,7 +9,7 @@ export default class ProfileHeader extends Component {
 		return (
 			<div className="row">
 				<div className="col-md-12">
-					<div className="card card-body bg-primary text-white mb-3">
+					<div className="card card-body bg-gradient-primary text-white mb-3">
 						<div className="row">
 							<div className="col-12 d-flex justify-content-center">
 								<img

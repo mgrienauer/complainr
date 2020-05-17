@@ -88,15 +88,16 @@ class PostItem extends Component {
 							<p className="p-0 mb-0">{post.name}</p>
 							<Link
 								to={`/profile/handle/${post.handle}`}
-								className="link-success"
+								className="link-primary"
 							>
 								@{post.handle}
 							</Link>
 						</div>
 
-						<h6 className="ml-auto text-center">
-							Complaint Validity: {complaintValidity}
-						</h6>
+						<div className="ml-auto text-center text-primary d-flex align-items-center">
+							<h6>Complaint Validity: </h6>
+							<h3 className="ml-2">{complaintValidity}</h3>
+						</div>
 					</div>
 				</div>
 
@@ -110,7 +111,7 @@ class PostItem extends Component {
 							<div className="d-flex flex-column">
 								<i
 									className={`${
-										this.userHasLiked() ? "text-info" : "text-secondary"
+										this.userHasLiked() ? "text-info" : "text-black-50"
 									} fas fa-arrow-up fa-lg mt-1 mb-1`}
 								></i>
 								<h3>😬</h3>
@@ -127,7 +128,7 @@ class PostItem extends Component {
 								<h3>😒</h3>
 								<i
 									className={`${
-										this.userHasDisliked() ? "text-info" : "text-secondary"
+										this.userHasDisliked() ? "text-info" : "text-black-50"
 									} fas fa-arrow-down fa-lg mb-1 mt-1`}
 								></i>
 							</div>
@@ -139,7 +140,10 @@ class PostItem extends Component {
 
 						<div className="d-flex flex-row w-100 mt-auto">
 							{showActions && (
-								<Link to={`/post/${post._id}`} className="btn btn-info">
+								<Link
+									to={`/post/${post._id}`}
+									className="btn btn-light rounded-pill"
+								>
 									Comments · {post.comments.length}
 								</Link>
 							)}
@@ -147,7 +151,7 @@ class PostItem extends Component {
 							{post.user === auth.user.id ? (
 								<button
 									type="button"
-									className="btn btn-danger ml-auto"
+									className="btn btn-danger rounded-pill ml-auto"
 									onClick={() => this.onDeleteClick(post._id)}
 								>
 									<i className="fas fa-trash" />
