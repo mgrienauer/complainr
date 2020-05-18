@@ -9,6 +9,7 @@ import {
 	unLikePost,
 	unDislikePost,
 } from "../../actions/postActions";
+import DropupBtn from "../common/DropupBtn";
 
 class PostItem extends Component {
 	onDeleteClick = (postId) => {
@@ -149,13 +150,10 @@ class PostItem extends Component {
 							)}
 
 							{post.user === auth.user.id ? (
-								<button
-									type="button"
-									className="btn btn-danger rounded-pill ml-auto"
-									onClick={() => this.onDeleteClick(post._id)}
-								>
-									<i className="fas fa-trash" />
-								</button>
+								<DropupBtn
+									onDeleteClick={this.onDeleteClick}
+									post_id={post._id}
+								/>
 							) : (
 								""
 							)}

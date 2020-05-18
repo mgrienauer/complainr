@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
 	constructor() {
@@ -56,6 +57,10 @@ class Login extends Component {
 							<h1 className="display-4 text-center">Log In</h1>
 							<p className="lead text-center">
 								Sign in to your Complainr account
+							</p>
+							<p className="lead text-center text-muted">
+								Don't have an account? Of course you don't...typical. Whatever,{" "}
+								<Link to="/register">sign up here</Link>
 							</p>
 
 							<form onSubmit={this.onSubmit}>

@@ -41,7 +41,10 @@ class Dashboard extends Component {
 						<Profile preview />
 						<div className="row mt-5">
 							<div className="col-12 d-flex justify-content-end">
-								<button onClick={this.onDeleteClick} className="btn btn-danger">
+								<button
+									onClick={this.onDeleteClick}
+									className="btn btn-outline-danger"
+								>
 									Delete Account
 								</button>
 							</div>
@@ -56,7 +59,7 @@ class Dashboard extends Component {
 						<p>
 							You have not yet set up a profile. Please boss up and set one up.
 						</p>
-						<Link to="/create-profile" className="btn btn-lg btn-info">
+						<Link to="/create-profile" className="btn btn-lg btn-primary">
 							Create Profile
 						</Link>
 					</div>
@@ -65,7 +68,7 @@ class Dashboard extends Component {
 		}
 
 		return (
-			<div className="dashboard" style={{ minHeight: "80vh" }}>
+			<div className="dashboard">
 				<div className="container">
 					<div className="row">
 						<div className="col-md-12">
