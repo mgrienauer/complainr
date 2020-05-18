@@ -41,15 +41,20 @@ class Profile extends Component {
 					{!this.props.preview && (
 						<div className="row">
 							<div className="col-md-6">
-								<Link to="/feed" className="btn btn-light mb-3 float-left">
+								<Link
+									to="/feed"
+									className="btn btn-outline-secondary mb-3 float-left"
+								>
 									Back to Feed
 								</Link>
 							</div>
 							<div className="cold-md-6" />
 						</div>
 					)}
-					<ProfileHeader profile={profile} />
-					<ProfileAbout profile={profile} />
+					<div className="row">
+						<ProfileHeader profile={profile} />
+						<ProfileAbout profile={profile} />
+					</div>
 				</div>
 			);
 		}
