@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import "bootswatch/dist/flatly/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -54,7 +53,7 @@ function App() {
 					<Navbar />
 					<Route exact path="/" component={Landing} />
 
-					<div className="container">
+					<div className="container content-container">
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/feed" component={Posts} />

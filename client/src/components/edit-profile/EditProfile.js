@@ -202,7 +202,7 @@ const ProfileForm = ({
 				<button
 					type="button"
 					onClick={() => toggleSocialInputs(!displaySocialInputs)}
-					className="btn btn-light"
+					className="btn btn-secondary"
 				>
 					Add social network links (optional)
 				</button>
@@ -211,7 +211,7 @@ const ProfileForm = ({
 			<input
 				type="submit"
 				value="Submit"
-				className="btn btn-info btn-block mt-4"
+				className="btn btn-primary btn-block rounded-pill mt-4"
 				onClick={onSubmit}
 			/>
 		</div>

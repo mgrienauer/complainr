@@ -49,10 +49,10 @@ class Login extends Component {
 	render() {
 		const { errors } = this.props;
 		return (
-			<div className="login">
-				<div className="container">
+			<div className="login form-width m-auto h-100">
+				<div className="container bg-light rounded p-4">
 					<div className="row">
-						<div className="col-md-8 m-auto">
+						<div className="col-12 m-auto">
 							<h1 className="display-4 text-center">Log In</h1>
 							<p className="lead text-center">
 								Sign in to your Complainr account
@@ -79,7 +79,7 @@ class Login extends Component {
 
 								<input
 									type="submit"
-									className="btn btn-success btn-block mt-4"
+									className="btn btn-primary rounded-pill btn-block mt-4"
 								/>
 							</form>
 						</div>

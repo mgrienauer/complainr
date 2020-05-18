@@ -73,7 +73,7 @@ class PostForm extends Component {
 		return (
 			<div className="post-form mb-3">
 				<div className="card card-info">
-					<div className="card-header bg-success text-white">
+					<div className="card-header bg-primary text-white">
 						Complain about something. We can <strong>hardly</strong> wait...
 					</div>
 					<div className="card-body">
@@ -90,7 +90,7 @@ class PostForm extends Component {
 							<div className="d-flex w-100 text-center align-items-center">
 								<button
 									type="submit"
-									className="btn btn-success"
+									className="btn btn-primary rounded-pill"
 									disabled={
 										!this.state.text.length || this.state.text.length > 140
 									}

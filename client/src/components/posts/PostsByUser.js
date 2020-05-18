@@ -18,7 +18,10 @@ class PostsByUser extends Component {
 			<>
 				<div className="row">
 					<div className="col-md-6">
-						<Link to="/feed" className="btn btn-light mb-3 float-left">
+						<Link
+							to="/feed"
+							className="btn btn-outline-secondary mb-3 float-left"
+						>
 							Back to Feed
 						</Link>
 					</div>
