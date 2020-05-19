@@ -29,7 +29,7 @@ class PostsByUser extends Component {
 				</div>
 				<div className="row text-center mb-2">
 					<div className="col-12 d-flex justify-content-center">
-						<h2>Posts by {handle}</h2>
+						<h2>Posts by @{handle}</h2>
 					</div>
 				</div>
 
