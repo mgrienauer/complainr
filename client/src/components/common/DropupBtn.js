@@ -16,9 +16,9 @@ export default function DropupBtn(props) {
 				<a
 					class="dropdown-item text-danger"
 					href="#"
-					onClick={() => props.onDeleteClick(props.post_id)}
+					onClick={() => props.onDeleteClick(props.post_id, props.comment_id)}
 				>
-					Delete Post
+					Delete {props.post ? "Post" : "Comment"}
 				</a>
 			</div>
 		</div>

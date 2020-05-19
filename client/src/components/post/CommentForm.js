@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addComment } from "../../actions/postActions";
 import { getCurrentProfile } from "../../actions/profileActions";
+import NoProfileBtn from "../common/NoProfileBtn";
 
 class CommentForm extends Component {
 	state = {
@@ -70,6 +71,7 @@ class CommentForm extends Component {
 
 	render() {
 		const { errors } = this.state;
+		const { handle } = this.props.profile.profile || "";
 
 		return (
 			<div className="post-form mb-3">
@@ -89,16 +91,22 @@ class CommentForm extends Component {
 								/>
 							</div>
 							<div className="d-flex w-100 text-center align-items-center">
-								<button
-									type="submit"
-									className="btn btn-primary rounded-pill"
-									disabled={
-										!this.state.text.length || this.state.text.length > 140
-									}
-								>
-									Submit
-								</button>
-								<p className="ml-auto">{this.renderRemainingChars()}</p>
+								{handle ? (
+									<>
+										<button
+											type="submit"
+											className="btn btn-primary rounded-pill"
+											disabled={
+												!this.state.text.length || this.state.text.length > 140
+											}
+										>
+											Submit
+										</button>
+										<p className="ml-auto">{this.renderRemainingChars()}</p>
+									</>
+								) : (
+									<NoProfileBtn />
+								)}
 							</div>
 						</form>
 					</div>

@@ -23,7 +23,7 @@ class CommentItem extends Component {
 								style={{ height: "50px", width: "50px" }}
 							/>
 						</Link>
-						<div className="d-flex flex-column ml-3 align-items-center justify-content-center text-center">
+						<div className="d-flex flex-column ml-3 align-items-start justify-content-center text-center">
 							<p className="mb-0">{comment.name}</p>
 							<Link
 								to={`/profile/handle/${comment.handle}`}

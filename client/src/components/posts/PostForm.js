@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addPost } from "../../actions/postActions";
 import { getCurrentProfile } from "../../actions/profileActions";
+import NoProfileBtn from "../common/NoProfileBtn";
 
 class PostForm extends Component {
 	state = {
@@ -69,6 +70,7 @@ class PostForm extends Component {
 
 	render() {
 		const { errors } = this.state;
+		const { handle } = this.props.profile.profile || "";
 
 		return (
 			<div className="post-form mb-3">
@@ -80,7 +82,7 @@ class PostForm extends Component {
 						<form onSubmit={this.onSubmit}>
 							<div className="form-group">
 								<TextAreaFieldGroup
-									placeholder="Make your lame ass complaint here..."
+									placeholder="Make your (probably invalid) complaint here..."
 									name="text"
 									value={this.state.text}
 									onChange={this.onChange}
@@ -88,16 +90,22 @@ class PostForm extends Component {
 								/>
 							</div>
 							<div className="d-flex w-100 text-center align-items-center">
-								<button
-									type="submit"
-									className="btn btn-primary rounded-pill"
-									disabled={
-										!this.state.text.length || this.state.text.length > 140
-									}
-								>
-									Submit
-								</button>
-								<p className="ml-auto">{this.renderRemainingChars()}</p>
+								{handle ? (
+									<>
+										<button
+											type="submit"
+											className="btn btn-primary rounded-pill"
+											disabled={
+												!this.state.text.length || this.state.text.length > 140
+											}
+										>
+											Submit
+										</button>
+										<p className="ml-auto">{this.renderRemainingChars()}</p>
+									</>
+								) : (
+									<NoProfileBtn />
+								)}
 							</div>
 						</form>
 					</div>
