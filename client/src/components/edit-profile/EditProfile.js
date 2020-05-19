@@ -140,80 +140,80 @@ const ProfileForm = ({
 	];
 	console.log(errors);
 	return (
-		<div className="create-profile">
-			<div className="container">
+		<div className="create-profile form-width m-auto">
+			<div className="container bg-white rounded p-4">
 				<div className="row">
-					<div className="col-md-8 m-auto">
+					<div className="col-12 m-auto">
 						<h1 className="display-4 text-center">Edit your profile</h1>
 						<p className="lead text-center">Edit your sob story</p>
 						<small className="d-block pb-3">* = required</small>
+						<form onSubmit={onSubmit}>
+							<TextFieldGroup
+								placeholder="* Profile Handle"
+								name="handle"
+								onChange={onChange}
+								error={errors.handle}
+								value={handle ? handle : ""}
+								info="This is a display name that other users will see you by"
+							/>
+
+							<SelectListGroup
+								placeholder="Status"
+								name="status"
+								value={status ? status : options[0].value}
+								error={errors.status}
+								onChange={onChange}
+								options={options}
+								info="Select your current status you big baby"
+							/>
+
+							<TextFieldGroup
+								placeholder="Location"
+								name="location"
+								onChange={onChange}
+								error={errors.location}
+								value={location ? location : ""}
+								info="Where is your fortress of boo-hoo-itude?"
+							/>
+
+							<TextFieldGroup
+								placeholder="* Main complaints"
+								name="complaints"
+								onChange={onChange}
+								error={errors.complaints}
+								value={complaints ? complaints : ""}
+								info="Please enter your main complaints separated by commans (example: 'Work, boyfriend, bunyons'"
+							/>
+
+							<TextAreaFieldGroup
+								placeholder="* Short bio"
+								name="bio"
+								onChange={onChange}
+								error={errors.bio}
+								value={bio ? bio : ""}
+								info="Please give us your sob story. Keep it brief..."
+							/>
+						</form>
+
+						<div className="mb-3">
+							<button
+								type="button"
+								onClick={() => toggleSocialInputs(!displaySocialInputs)}
+								className="btn btn-outline-secondary"
+							>
+								Add social network links (optional)
+							</button>
+						</div>
+						{socialInputs}
+						<input
+							type="submit"
+							value="Submit"
+							className="btn btn-primary btn-block rounded-pill mt-4"
+							onClick={onSubmit}
+						/>
 					</div>
 				</div>
 			</div>
-			<form onSubmit={onSubmit}>
-				<TextFieldGroup
-					placeholder="* Profile Handle"
-					name="handle"
-					onChange={onChange}
-					error={errors.handle}
-					value={handle ? handle : ""}
-					info="This is a display name that other users will see you by"
-				/>
-
-				<SelectListGroup
-					placeholder="Status"
-					name="status"
-					value={status ? status : options[0].value}
-					error={errors.status}
-					onChange={onChange}
-					options={options}
-					info="Select your current status you big baby"
-				/>
-
-				<TextFieldGroup
-					placeholder="Location"
-					name="location"
-					onChange={onChange}
-					error={errors.location}
-					value={location ? location : ""}
-					info="Where is your fortress of boo-hoo-itude?"
-				/>
-
-				<TextFieldGroup
-					placeholder="* Main complaints"
-					name="complaints"
-					onChange={onChange}
-					error={errors.complaints}
-					value={complaints ? complaints : ""}
-					info="Please enter your main complaints separated by commans (example: 'Work, boyfriend, bunyons'"
-				/>
-
-				<TextAreaFieldGroup
-					placeholder="* Short bio"
-					name="bio"
-					onChange={onChange}
-					error={errors.bio}
-					value={bio ? bio : ""}
-					info="Please give us your sob story. Keep it brief..."
-				/>
-			</form>
-
-			<div className="mb-3">
-				<button
-					type="button"
-					onClick={() => toggleSocialInputs(!displaySocialInputs)}
-					className="btn btn-secondary"
-				>
-					Add social network links (optional)
-				</button>
-			</div>
-			{socialInputs}
-			<input
-				type="submit"
-				value="Submit"
-				className="btn btn-primary btn-block rounded-pill mt-4"
-				onClick={onSubmit}
-			/>
 		</div>
 	);
 };

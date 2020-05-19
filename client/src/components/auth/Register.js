@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import { Link } from "react-router-dom";
 
 class Register extends Component {
 	state = {
@@ -53,7 +54,11 @@ class Register extends Component {
 					<div className="row">
 						<div className="col-12 m-auto">
 							<h1 className="display-4 text-center">Sign Up</h1>
-							<p className="lead text-center">Create your Complainr acconut</p>
+							<p className="lead text-center">Create your Complainr account</p>
+							<p className="lead text-center text-muted">
+								Already have an account? Why are you even here... Whatever,{" "}
+								<Link to="/login">log in here</Link>
+							</p>
 							<form noValidate onSubmit={this.onSubmit}>
 								<TextFieldGroup
 									type="Name"

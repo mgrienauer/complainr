@@ -6,9 +6,6 @@
   min-height: calc(100vh - 138px);
 }
 
-.btn-pill {
-  border-radius: 100px !important;
-}
 
 .form-width {
   max-width: 500px;
