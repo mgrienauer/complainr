@@ -33,7 +33,7 @@ class PostsByUser extends Component {
 					</div>
 				</div>
 
-				<Posts hideForm byUser={this.props.profile._id} />
+				<Posts hideForm byUser={handle} />
 			</>
 		);
 	}

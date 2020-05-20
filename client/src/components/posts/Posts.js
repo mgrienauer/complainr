@@ -14,7 +14,6 @@ class Posts extends Component {
 	render() {
 		const { posts, loading } = this.props.post;
 		const { isAuthenticated } = this.props.auth;
-
 		let postContent;
 
 		if (posts === null || loading) {
@@ -26,7 +25,7 @@ class Posts extends Component {
 				</div>
 			);
 		} else {
-			postContent = <PostFeed posts={posts} />;
+			postContent = <PostFeed posts={posts} byUser={this.props.byUser} />;
 		}
 
 		return (
