@@ -63,6 +63,7 @@ router.post(
 			handle: req.body.handle,
 			avatar: req.body.avatar,
 			user: req.user.id,
+			userStatus: req.body.userStatus,
 		});
 		//save the post to db and return post to frontend
 		newPost.save().then((post) => res.json(post));

@@ -10,6 +10,7 @@ import {
 	unDislikePost,
 } from "../../actions/postActions";
 import DropupBtn from "../common/DropupBtn";
+import StatusEmoji from "../common/StatusEmoji";
 
 class PostItem extends Component {
 	onDeleteClick = (postId) => {
@@ -94,9 +95,11 @@ class PostItem extends Component {
 								@{post.handle}
 							</Link>
 						</div>
-
+						<div className="ml-3">
+							<StatusEmoji status={post.userStatus} />
+						</div>
 						<div className="ml-auto text-center text-primary d-flex align-items-center">
-							<h6>Complaint Validity: </h6>
+							<h6 className="d-none d-sm-block">Complaint Validity: </h6>
 							<h3 className="ml-2">{complaintValidity}</h3>
 						</div>
 					</div>
