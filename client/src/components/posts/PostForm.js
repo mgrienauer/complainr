@@ -24,11 +24,13 @@ class PostForm extends Component {
 		const { user } = this.props.auth;
 		//get current profile
 		const { handle } = this.props.profile.profile || "";
+		const { status } = this.props.profile.profile || "";
 		//create a newPost object with data to send to backend
 		const newPost = {
 			text: this.state.text,
 			handle,
 			name: user.name,
+			userStatus: status,
 			avatar: user.avatar,
 		};
 		//fire off addPost action with the newPost data
