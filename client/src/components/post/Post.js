@@ -18,7 +18,7 @@ class Post extends Component {
 		let postContent;
 		if (post === null || loading || Object.keys(post).length === 0) {
 			postContent = (
-				<div class="spinner-border text-primary" role="status">
+				<div class="spinner-border text-primary text-center" role="status">
 					<span class="sr-only">Loading...</span>
 				</div>
 			);
@@ -36,15 +36,15 @@ class Post extends Component {
 			<div className="post">
 				<div className="container" style={{ maxWidth: "700px" }}>
 					<div className="row">
-						<div className="col-md-12">
+						<div className="col-12">
 							<Link
 								to="/feed"
 								className="btn btn-outline-secondary btn-rounded-pill mb-3"
 							>
 								Back to Feed
 							</Link>
-							{postContent}
 						</div>
+						<div className="col-12">{postContent}</div>
 					</div>
 				</div>
 			</div>

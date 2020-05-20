@@ -153,6 +153,7 @@ class PostItem extends Component {
 								<DropupBtn
 									onDeleteClick={this.onDeleteClick}
 									post_id={post._id}
+									post
 								/>
 							) : (
 								""
