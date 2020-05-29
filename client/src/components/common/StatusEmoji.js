@@ -13,25 +13,65 @@ export default function StatusEmoji({ status }) {
 	let renderEmoji;
 	switch (status) {
 		case "Whiner":
-			renderEmoji = <h3>🍷</h3>;
+			renderEmoji = (
+				<h3>
+					<span role="img" aria-label="status emoji">
+						🍷
+					</span>
+				</h3>
+			);
 			break;
 		case "Weenie":
-			renderEmoji = <h3>🌭</h3>;
+			renderEmoji = (
+				<h3>
+					<span role="img" aria-label="status emoji">
+						🌭
+					</span>
+				</h3>
+			);
 			break;
 		case "Griper":
-			renderEmoji = <h3>🍇</h3>;
+			renderEmoji = (
+				<h3>
+					<span role="img" aria-label="status emoji">
+						🍇
+					</span>
+				</h3>
+			);
 			break;
 		case "Wambulance Driver":
-			renderEmoji = <h3>🚑</h3>;
+			renderEmoji = (
+				<h3>
+					<span role="img" aria-label="status emoji">
+						🚑
+					</span>
+				</h3>
+			);
 			break;
 		case "Wet Blanket":
-			renderEmoji = <h3>🌧️</h3>;
+			renderEmoji = (
+				<h3>
+					<span role="img" aria-label="status emoji">
+						🌧️
+					</span>
+				</h3>
+			);
 			break;
 		case "Boohooer":
-			renderEmoji = <h3>👻</h3>;
+			renderEmoji = (
+				<h3>
+					<span role="img" aria-label="status emoji">
+						👻
+					</span>
+				</h3>
+			);
 			break;
 		default:
-			renderEmoji = <h3></h3>;
+			renderEmoji = (
+				<h3>
+					<span></span>
+				</h3>
+			);
 	}
 
 	return renderEmoji;

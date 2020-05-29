@@ -118,7 +118,11 @@ class PostItem extends Component {
 										this.userHasLiked() ? "text-info" : "text-black-50"
 									} fas fa-arrow-up fa-lg mt-1 mb-1`}
 								></i>
-								<h3>😬</h3>
+								<h3>
+									<span role="img" aria-label="oof emoji">
+										😬
+									</span>
+								</h3>
 							</div>
 							<span className="font-weight-bold">OOF</span>
 						</button>
@@ -129,7 +133,11 @@ class PostItem extends Component {
 						>
 							<span className="font-weight-bold">MEH</span>
 							<div className="d-flex flex-column">
-								<h3>😒</h3>
+								<h3>
+									<span role="img" aria-label="meh emoji">
+										😒
+									</span>
+								</h3>
 								<i
 									className={`${
 										this.userHasDisliked() ? "text-info" : "text-black-50"
