@@ -11,10 +11,10 @@ const ProfileActions = (props) => {
 				<i className="fas fa-pen text-white mr-2"></i>
 				Your Posts
 			</Link>
-			<a href="add-education.html" className="btn btn-primary">
-				<i className="fas fa-graduation-cap text-white mr-1"></i>
-				TODO: Your Friends
-			</a>
+			<Link className="btn btn-secondary" style={{ cursor: "not-allowed" }}>
+				<i className="fas fa-user-friends mr-1"></i>
+				Coming Soon: Friends
+			</Link>
 		</div>
 	);
 };

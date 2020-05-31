@@ -15,7 +15,7 @@ export default function StatusEmoji({ status }) {
 		case "Whiner":
 			renderEmoji = (
 				<h3>
-					<span role="img" aria-label="status emoji">
+					<span role="img" aria-label="wine emoji">
 						🍷
 					</span>
 				</h3>
@@ -24,7 +24,7 @@ export default function StatusEmoji({ status }) {
 		case "Weenie":
 			renderEmoji = (
 				<h3>
-					<span role="img" aria-label="status emoji">
+					<span role="img" aria-label="hotdog emoji">
 						🌭
 					</span>
 				</h3>
@@ -33,7 +33,7 @@ export default function StatusEmoji({ status }) {
 		case "Griper":
 			renderEmoji = (
 				<h3>
-					<span role="img" aria-label="status emoji">
+					<span role="img" aria-label="grape emoji">
 						🍇
 					</span>
 				</h3>
@@ -42,7 +42,7 @@ export default function StatusEmoji({ status }) {
 		case "Wambulance Driver":
 			renderEmoji = (
 				<h3>
-					<span role="img" aria-label="status emoji">
+					<span role="img" aria-label="ambulance emoji">
 						🚑
 					</span>
 				</h3>
@@ -51,7 +51,7 @@ export default function StatusEmoji({ status }) {
 		case "Wet Blanket":
 			renderEmoji = (
 				<h3>
-					<span role="img" aria-label="status emoji">
+					<span role="img" aria-label="rain emoji">
 						🌧️
 					</span>
 				</h3>
@@ -60,7 +60,7 @@ export default function StatusEmoji({ status }) {
 		case "Boohooer":
 			renderEmoji = (
 				<h3>
-					<span role="img" aria-label="status emoji">
+					<span role="img" aria-label="ghost emoji">
 						👻
 					</span>
 				</h3>
