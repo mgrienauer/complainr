@@ -15,7 +15,7 @@ class CreateProfile extends Component {
 		handle: "",
 		bio: "",
 		location: "",
-		status: "",
+		status: "Whiner",
 		complaints: "",
 		youtube: "",
 		twitter: "",

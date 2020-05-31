@@ -42,11 +42,60 @@ class Dashboard extends Component {
 						<div className="row mt-5">
 							<div className="col-12 d-flex justify-content-end">
 								<button
-									onClick={this.onDeleteClick}
 									className="btn btn-outline-danger"
+									data-toggle="modal"
+									data-target="#deleteAccountModal"
 								>
 									Delete Account
 								</button>
+
+								<div
+									class="modal fade"
+									id="deleteAccountModal"
+									tabindex="-1"
+									role="dialog"
+									aria-labelledby="Delete Account Popup"
+									aria-hidden="true"
+								>
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title">Delete Account</h5>
+												<button
+													type="button"
+													class="close"
+													data-dismiss="modal"
+													aria-label="Close"
+												>
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p>
+													So you want to delete your account? You big
+													crybaby...this is so typical. Once you delete it,
+													there's no getting it back!
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button
+													type="button"
+													class="btn btn-secondary"
+													data-dismiss="modal"
+												>
+													Close
+												</button>
+												<button
+													type="button"
+													onClick={this.onDeleteClick}
+													class="btn btn-danger"
+												>
+													Delete Account <span>😭</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

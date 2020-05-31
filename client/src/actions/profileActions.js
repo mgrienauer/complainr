@@ -96,28 +96,23 @@ export const createProfile = (profileData, history) => (dispatch) => {
 //delete account and profile
 export const deleteAccount = () => (dispatch) => {
 	//after confirmation popup is clicked, delete profile
-	if (
-		window.confirm(
-			"Are you sure you want to delete your account you big crybaby? This can't be undone",
-		)
-	) {
-		//delete request to backend
-		axios
-			.delete("/api/profile")
-			//use succesful response to set current user to empty object
-			.then((res) => {
-				dispatch({
-					type: SET_CURRENT_USER,
-					payload: {},
-				});
-			})
-			.catch((err) => {
-				dispatch({
-					type: GET_ERRORS,
-					payload: err.response.data,
-				});
+
+	//delete request to backend
+	axios
+		.delete("/api/profile")
+		//use succesful response to set current user to empty object
+		.then((res) => {
+			dispatch({
+				type: SET_CURRENT_USER,
+				payload: {},
 			});
-	}
+		})
+		.catch((err) => {
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data,
+			});
+		});
 };
 
 //profile loading function
