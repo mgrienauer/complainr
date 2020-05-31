@@ -2,7 +2,7 @@ import React from "react";
 
 export default function DropupBtn(props) {
 	return (
-		<div className="btn-group dropup ml-auto">
+		<div class="btn-group dropup ml-auto">
 			<button
 				type="button"
 				className="btn btn-light rounded-circle ml-auto text-black-50"
@@ -12,9 +12,13 @@ export default function DropupBtn(props) {
 			>
 				<i className="fas fa-ellipsis-h"></i>
 			</button>
-			<div className="dropdown-menu dropdown-menu-right mb-2">
+			<div
+				className="dropdown-menu dropdown-menu-right mb-2"
+				aria-labelledby="dropdownMenuLink"
+			>
 				<a
 					className="dropdown-item text-danger"
+					href="#"
 					onClick={() => props.onDeleteClick(props.post_id, props.comment_id)}
 				>
 					Delete {props.post ? "Post" : "Comment"}
