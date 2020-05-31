@@ -33,7 +33,7 @@ class Navbar extends Component {
 					</Link>
 				</li>
 				<li className="nav-item">
-					<a href="#" className="nav-link" onClick={this.onLogoutClick}>
+					<Link to="/login" className="nav-link" onClick={this.onLogoutClick}>
 						<img
 							src={user.avatar}
 							alt={user.name}
@@ -41,7 +41,7 @@ class Navbar extends Component {
 							style={{ width: "25px", marginRight: "7px", borderRadius: "50%" }}
 						/>
 						Logout
-					</a>
+					</Link>
 				</li>
 			</ul>
 		);

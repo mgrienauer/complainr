@@ -80,7 +80,7 @@ class PostItem extends Component {
 							<img
 								className="rounded-circle"
 								src={post.avatar}
-								alt="User's profile picture"
+								alt="User's profile avatar"
 								style={{ height: "50px", width: "50px" }}
 							/>
 						</Link>
